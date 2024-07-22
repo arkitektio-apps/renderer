@@ -1,0 +1,92 @@
+deployments:
+- build_id: a48c04fb-3624-4afd-8510-273f050da635
+  deployed_at: '2024-07-22T15:48:59.585692'
+  deployment_id: 4a957a2f-07c3-473d-9559-c33c6bcf12d1
+  deployment_run: 78d6abbf-54f0-4921-a356-f0afc8e070dc
+  flavour: vanilla
+  image: jhnnsrs/renderer:0.0.1-vanilla
+  inspection:
+    requirements:
+      datalayer:
+        description: An instance of ArkitektNext Datalayer to make requests to the
+          user's data
+        optional: true
+        service: live.arkitekt.s3
+      fluss:
+        description: An instance of ArkitektNext fluss to retrieve graphs from
+        optional: false
+        service: live.arkitekt.fluss
+      kabinet:
+        description: An instance of ArkitektNext Kabinet to retrieve nodes from
+        optional: false
+        service: live.arkitekt.kabinet
+      lok:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: live.arkitekt.lok
+      mikro:
+        description: An instance of ArkitektNext Mikro to make requests to the user's
+          data
+        optional: true
+        service: live.arkitekt.mikro
+      rekuest:
+        description: An instance of ArkitektNext Rekuest to assign to nodes
+        optional: false
+        service: live.arkitekt.rekuest
+      unlok:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: live.arkitekt.lok
+    size: 615375962
+    templates:
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \  }\n}"
+            ward: mikro
+          description: The image
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          label: image
+          nullable: false
+          scope: GLOBAL
+        collections: []
+        description: This function renders the image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Render
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
+              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \  }\n}"
+            ward: mikro
+          description: The thumbnail
+          identifier: '@mikro/snapshot'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          scope: GLOBAL
+      dependencies: []
+      dynamic: false
+      interface: render
+  manifest:
+    author: jhnnsrs
+    created_at: '2024-07-22T15:48:28.094948'
+    entrypoint: app
+    identifier: renderer
+    scopes:
+    - read
+    version: 0.0.1
+  selectors: []
+latest_deployment_run: 44321e73-7077-4e28-a017-71e615cc0e77
