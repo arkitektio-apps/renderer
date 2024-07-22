@@ -1,0 +1,10 @@
+{
+    "name": "renderer vanilla Devcontainer",
+    "build": {
+        "dockerfile": "/home/jhnnsrs/Code/apps/renderer/.arkitekt_next/flavours/vanilla/Dockerfile",
+        "context": "../.."
+    },
+    "runArgs": [
+        "--network=host"
+    ]
+}

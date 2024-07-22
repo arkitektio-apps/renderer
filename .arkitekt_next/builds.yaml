@@ -1,0 +1,89 @@
+builds:
+- build_id: a48c04fb-3624-4afd-8510-273f050da635
+  build_run: 1202ce56-58d8-4e8e-a75c-71c088745816
+  description: This is a vanilla flavour
+  flavour: vanilla
+  inspection:
+    requirements:
+      datalayer:
+        description: An instance of ArkitektNext Datalayer to make requests to the
+          user's data
+        optional: true
+        service: live.arkitekt.s3
+      fluss:
+        description: An instance of ArkitektNext fluss to retrieve graphs from
+        optional: false
+        service: live.arkitekt.fluss
+      kabinet:
+        description: An instance of ArkitektNext Kabinet to retrieve nodes from
+        optional: false
+        service: live.arkitekt.kabinet
+      lok:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: live.arkitekt.lok
+      mikro:
+        description: An instance of ArkitektNext Mikro to make requests to the user's
+          data
+        optional: true
+        service: live.arkitekt.mikro
+      rekuest:
+        description: An instance of ArkitektNext Rekuest to assign to nodes
+        optional: false
+        service: live.arkitekt.rekuest
+      unlok:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: live.arkitekt.lok
+    size: 615375962
+    templates:
+    - definition:
+        args:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
+              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \  }\n}"
+            ward: mikro
+          description: The image
+          identifier: '@mikro/image'
+          key: image
+          kind: STRUCTURE
+          label: image
+          nullable: false
+          scope: GLOBAL
+        collections: []
+        description: This function renders the image
+        interfaces: []
+        isDev: false
+        isTestFor: []
+        kind: FUNCTION
+        name: Render
+        portGroups: []
+        returns:
+        - assignWidget:
+            kind: SEARCH
+            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
+              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
+              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
+              \  }\n}"
+            ward: mikro
+          description: The thumbnail
+          identifier: '@mikro/snapshot'
+          key: return0
+          kind: STRUCTURE
+          nullable: false
+          scope: GLOBAL
+      dependencies: []
+      dynamic: false
+      interface: render
+  manifest:
+    author: jhnnsrs
+    entrypoint: app
+    identifier: renderer
+    scopes:
+    - read
+    version: 0.0.1
+  selectors: []
+latest_build_run: 1202ce56-58d8-4e8e-a75c-71c088745816
