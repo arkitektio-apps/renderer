@@ -29,6 +29,9 @@ cm_colormaps = {
     ColorMap.VIRIDIS: cm.viridis,
     ColorMap.MAGMA: cm.magma,
     ColorMap.PLASMA: cm.plasma,
+    ColorMap.RED: cm.inferno,
+    ColorMap.GREEN: cm.viridis,
+    ColorMap.BLUE: cm.plasma,
 }
 
 
@@ -72,10 +75,14 @@ def render(image: Image) -> Snapshot:
             min, max = view_data.min(), view_data.max()
             new_data = np.interp(view_data, (min, max), (0, 255)).astype(np.uint8)
         else:
-            # Scale by dtype
-            max_value = np.iinfo(view_data.dtype).max
+            # Check if view_data is an integer or float type and scale accordingly
+            if np.issubdtype(view_data.dtype, np.integer):
+                max_value = np.iinfo(view_data.dtype).max
+            else:
+                max_value = view_data.max()  # For float types, use the actual max value
+
             view_data = (view_data / max_value) * 255
-            new_data = view_data
+            new_data = view_data.astype(np.uint8)
 
         new_data = new_data.astype(np.uint8)  # Ensure dtype conversion
         rgb = np.array(view.base_color[:3]).reshape(1, 1, 3) / 255
@@ -85,9 +92,10 @@ def render(image: Image) -> Snapshot:
         else:
             cmap = cm_colormaps.get(view.color_map)
             if cmap is not None:
-                r_g_b += (cmap(new_data) * 255).astype(np.uint8)
+                cmap_output = (cmap(new_data) * 255).astype(np.uint8)
+                r_g_b += cmap_output[:, :, :3]  # Drop the alpha channel (4th dimension)
             else:
-                raise NotImplementedError("Color Map not implemented")
+                raise NotImplementedError(f"Color Map not implemented: {view.color_map}")
 
     print(r_g_b.shape)
 

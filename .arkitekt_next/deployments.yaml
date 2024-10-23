@@ -1,10 +1,10 @@
 deployments:
-- build_id: a48c04fb-3624-4afd-8510-273f050da635
-  deployed_at: '2024-07-22T15:48:59.585692'
-  deployment_id: 4a957a2f-07c3-473d-9559-c33c6bcf12d1
-  deployment_run: 78d6abbf-54f0-4921-a356-f0afc8e070dc
+- build_id: 1920cde3-4170-4a13-8326-4769afba80b2
+  deployed_at: '2024-10-23T11:00:35.560041'
+  deployment_id: 41d4614a-e0f4-435a-96af-e21ed546cdc7
+  deployment_run: bc247fc5-1a64-4da0-8126-133b1f683763
   flavour: vanilla
-  image: jhnnsrs/renderer:0.0.1-vanilla
+  image: jhnnsrs/renderer:0.0.2-vanilla
   inspection:
     requirements:
       datalayer:
@@ -20,6 +20,10 @@ deployments:
         description: An instance of ArkitektNext Kabinet to retrieve nodes from
         optional: false
         service: live.arkitekt.kabinet
+      livekit:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: io.livekit.livekit
       lok:
         description: An instance of ArkitektNext Lok to authenticate the user
         optional: false
@@ -37,7 +41,7 @@ deployments:
         description: An instance of ArkitektNext Lok to authenticate the user
         optional: false
         service: live.arkitekt.lok
-    size: 615375962
+    size: 659465051
     templates:
     - definition:
         args:
@@ -77,16 +81,17 @@ deployments:
           kind: STRUCTURE
           nullable: false
           scope: GLOBAL
+        stateful: false
       dependencies: []
       dynamic: false
       interface: render
   manifest:
     author: jhnnsrs
-    created_at: '2024-07-22T15:48:28.094948'
+    created_at: '2024-10-23T11:00:31.324535'
     entrypoint: app
     identifier: renderer
     scopes:
     - read
-    version: 0.0.1
+    version: 0.0.2
   selectors: []
-latest_deployment_run: 44321e73-7077-4e28-a017-71e615cc0e77
+latest_deployment_run: 623bacc7-a562-4900-833b-51305d623caf

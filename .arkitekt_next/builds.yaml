@@ -1,6 +1,6 @@
 builds:
-- build_id: a48c04fb-3624-4afd-8510-273f050da635
-  build_run: 1202ce56-58d8-4e8e-a75c-71c088745816
+- build_id: 1920cde3-4170-4a13-8326-4769afba80b2
+  build_run: 8856bb90-e75c-431c-a81f-cfba38ad91a0
   description: This is a vanilla flavour
   flavour: vanilla
   inspection:
@@ -18,6 +18,10 @@ builds:
         description: An instance of ArkitektNext Kabinet to retrieve nodes from
         optional: false
         service: live.arkitekt.kabinet
+      livekit:
+        description: An instance of ArkitektNext Lok to authenticate the user
+        optional: false
+        service: io.livekit.livekit
       lok:
         description: An instance of ArkitektNext Lok to authenticate the user
         optional: false
@@ -35,7 +39,7 @@ builds:
         description: An instance of ArkitektNext Lok to authenticate the user
         optional: false
         service: live.arkitekt.lok
-    size: 615375962
+    size: 659465051
     templates:
     - definition:
         args:
@@ -75,6 +79,7 @@ builds:
           kind: STRUCTURE
           nullable: false
           scope: GLOBAL
+        stateful: false
       dependencies: []
       dynamic: false
       interface: render
@@ -84,6 +89,6 @@ builds:
     identifier: renderer
     scopes:
     - read
-    version: 0.0.1
+    version: 0.0.2
   selectors: []
-latest_build_run: 1202ce56-58d8-4e8e-a75c-71c088745816
+latest_build_run: 8856bb90-e75c-431c-a81f-cfba38ad91a0
