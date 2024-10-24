@@ -1,47 +1,46 @@
-deployments:
-- build_id: 1920cde3-4170-4a13-8326-4769afba80b2
-  deployed_at: '2024-10-23T11:00:35.560041'
-  deployment_id: 41d4614a-e0f4-435a-96af-e21ed546cdc7
-  deployment_run: bc247fc5-1a64-4da0-8126-133b1f683763
-  flavour: vanilla
-  image: jhnnsrs/renderer:0.0.2-vanilla
+app_images:
+- appImageId: 8089029836784b6cbc72fd3d6af774fc
+  flavourName: vanilla
+  image:
+    buildAt: '2024-10-24T16:25:15.341147'
+    imageString: jhnnsrs/renderer:0.0.2-vanilla
   inspection:
     requirements:
-      datalayer:
-        description: An instance of ArkitektNext Datalayer to make requests to the
-          user's data
-        optional: true
-        service: live.arkitekt.s3
-      fluss:
-        description: An instance of ArkitektNext fluss to retrieve graphs from
-        optional: false
-        service: live.arkitekt.fluss
-      kabinet:
-        description: An instance of ArkitektNext Kabinet to retrieve nodes from
-        optional: false
-        service: live.arkitekt.kabinet
-      livekit:
-        description: An instance of ArkitektNext Lok to authenticate the user
-        optional: false
-        service: io.livekit.livekit
-      lok:
-        description: An instance of ArkitektNext Lok to authenticate the user
-        optional: false
-        service: live.arkitekt.lok
-      mikro:
-        description: An instance of ArkitektNext Mikro to make requests to the user's
-          data
-        optional: true
-        service: live.arkitekt.mikro
-      rekuest:
-        description: An instance of ArkitektNext Rekuest to assign to nodes
-        optional: false
-        service: live.arkitekt.rekuest
-      unlok:
-        description: An instance of ArkitektNext Lok to authenticate the user
-        optional: false
-        service: live.arkitekt.lok
-    size: 659465051
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: lok
+      optional: false
+      service: live.arkitekt.lok
+    - description: An instance of ArkitektNext fluss to retrieve graphs from
+      key: fluss
+      optional: false
+      service: live.arkitekt.fluss
+    - description: An instance of ArkitektNext Kabinet to retrieve nodes from
+      key: kabinet
+      optional: false
+      service: live.arkitekt.kabinet
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: livekit
+      optional: false
+      service: io.livekit.livekit
+    - description: An instance of ArkitektNext Mikro to make requests to the user's
+        data
+      key: mikro
+      optional: true
+      service: live.arkitekt.mikro
+    - description: An instance of ArkitektNext Datalayer to make requests to the user's
+        data
+      key: datalayer
+      optional: true
+      service: live.arkitekt.s3
+    - description: An instance of ArkitektNext Rekuest to assign to nodes
+      key: rekuest
+      optional: false
+      service: live.arkitekt.rekuest
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: unlok
+      optional: false
+      service: live.arkitekt.lok
+    size: 640643150
     templates:
     - definition:
         args:
@@ -87,11 +86,10 @@ deployments:
       interface: render
   manifest:
     author: jhnnsrs
-    created_at: '2024-10-23T11:00:31.324535'
     entrypoint: app
     identifier: renderer
     scopes:
     - read
     version: 0.0.2
   selectors: []
-latest_deployment_run: 623bacc7-a562-4900-833b-51305d623caf
+latest_app_image: 8089029836784b6cbc72fd3d6af774fc
