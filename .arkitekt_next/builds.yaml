@@ -1,6 +1,6 @@
 builds:
-- build_id: 83d2561f-60c4-43ea-b133-146340589f48
-  build_run: cfde26c0-2806-413c-8c8d-4e5b496a637b
+- build_id: 85043479-503c-4d10-9ac1-059194ee019c
+  build_run: 2362a92f-de86-4f7e-8396-c98aee27bc0d
   description: This is a vanilla flavour
   flavour: vanilla
   inspection:
@@ -39,99 +39,7 @@ builds:
       key: unlok
       optional: false
       service: live.arkitekt.lok
-    size: 640643150
-    templates:
-    - definition:
-        args:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
-              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \  }\n}"
-            ward: mikro
-          description: The image
-          identifier: '@mikro/image'
-          key: image
-          kind: STRUCTURE
-          label: image
-          nullable: false
-          scope: GLOBAL
-        collections: []
-        description: This function renders the image
-        interfaces: []
-        isDev: false
-        isTestFor: []
-        kind: FUNCTION
-        name: Render
-        portGroups: []
-        returns:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
-              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \  }\n}"
-            ward: mikro
-          description: The thumbnail
-          identifier: '@mikro/snapshot'
-          key: return0
-          kind: STRUCTURE
-          nullable: false
-          scope: GLOBAL
-        stateful: false
-      dependencies: []
-      dynamic: false
-      interface: render
-  manifest:
-    author: jhnnsrs
-    entrypoint: app
-    identifier: renderer
-    scopes:
-    - read
-    version: 0.0.2
-  selectors: []
-- build_id: 19f337dd-e402-44f3-922c-838c0c92bf52
-  build_run: 7df2f7e6-ad14-43bf-b699-941ae511efae
-  description: This is a vanilla flavour
-  flavour: vanilla
-  inspection:
-    requirements:
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: lok
-      optional: false
-      service: live.arkitekt.lok
-    - description: An instance of ArkitektNext fluss to retrieve graphs from
-      key: fluss
-      optional: false
-      service: live.arkitekt.fluss
-    - description: An instance of ArkitektNext Kabinet to retrieve nodes from
-      key: kabinet
-      optional: false
-      service: live.arkitekt.kabinet
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: livekit
-      optional: false
-      service: io.livekit.livekit
-    - description: An instance of ArkitektNext Mikro to make requests to the user's
-        data
-      key: mikro
-      optional: true
-      service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Datalayer to make requests to the user's
-        data
-      key: datalayer
-      optional: true
-      service: live.arkitekt.s3
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
-      key: rekuest
-      optional: false
-      service: live.arkitekt.rekuest
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: unlok
-      optional: false
-      service: live.arkitekt.lok
-    size: 640649356
+    size: 641083153
     templates:
     - definition:
         args:
@@ -183,4 +91,4 @@ builds:
     - read
     version: 0.0.3
   selectors: []
-latest_build_run: 7df2f7e6-ad14-43bf-b699-941ae511efae
+latest_build_run: 2362a92f-de86-4f7e-8396-c98aee27bc0d
