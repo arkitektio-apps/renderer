@@ -23,17 +23,39 @@ import os
 from mikro_next.api.schema import create_stage
 from PIL import Image as PILImage
 
+def red_map(x):
+    # Normalize to [0,1] and return red-only RGB image.
+    x_norm = x.astype(np.float32) / 255.0
+    red = x_norm
+    green = np.zeros_like(x_norm)
+    blue = np.zeros_like(x_norm)
+    return np.dstack((red, green, blue))
+
+def green_map(x):
+    # Normalize to [0,1] and return green-only RGB image.
+    x_norm = x.astype(np.float32) / 255.0
+    red = np.zeros_like(x_norm)
+    green = x_norm
+    blue = np.zeros_like(x_norm)
+    return np.dstack((red, green, blue))
+
+def blue_map(x):
+    # Normalize to [0,1] and return blue-only RGB image.
+    x_norm = x.astype(np.float32) / 255.0
+    red = np.zeros_like(x_norm)
+    green = np.zeros_like(x_norm)
+    blue = x_norm
+    return np.dstack((red, green, blue))
 
 cm_colormaps = {
-    ColorMap.INFERNO: cm.inferno,
-    ColorMap.VIRIDIS: cm.viridis,
-    ColorMap.MAGMA: cm.magma,
-    ColorMap.PLASMA: cm.plasma,
-    ColorMap.RED: cm.inferno,
-    ColorMap.GREEN: cm.viridis,
-    ColorMap.BLUE: cm.plasma,
+    ColorMap.INFERNO: lambda data: cm.inferno(data.astype(np.float32) / 255.0),
+    ColorMap.VIRIDIS: lambda data: cm.viridis(data.astype(np.float32) / 255.0),
+    ColorMap.MAGMA: lambda data: cm.magma(data.astype(np.float32) / 255.0),
+    ColorMap.PLASMA: lambda data: cm.plasma(data.astype(np.float32) / 255.0),
+    ColorMap.RED: red_map,
+    ColorMap.GREEN: green_map,
+    ColorMap.BLUE: blue_map,
 }
-
 
 @register
 def render(image: Image) -> Snapshot:
@@ -72,8 +94,8 @@ def render(image: Image) -> Snapshot:
             )
 
         if view.rescale is True:
-            min, max = view_data.min(), view_data.max()
-            new_data = np.interp(view_data, (min, max), (0, 255)).astype(np.uint8)
+            vmin, vmax = view_data.min(), view_data.max()
+            new_data = np.interp(view_data, (vmin, vmax), (0, 255)).astype(np.uint8)
         else:
             # Check if view_data is an integer or float type and scale accordingly
             if np.issubdtype(view_data.dtype, np.integer):
@@ -85,19 +107,22 @@ def render(image: Image) -> Snapshot:
             new_data = view_data.astype(np.uint8)
 
         new_data = new_data.astype(np.uint8)  # Ensure dtype conversion
-        rgb = np.array(view.base_color[:3]).reshape(1, 1, 3) / 255
+        rgb = np.array(view.base_color[:3]).reshape(1, 1, 3) / 255.0
 
         if view.color_map == ColorMap.INTENSITY:
+            # Expand dims so that new_data shape becomes (M, N, 1)
             r_g_b += (new_data[:, :, np.newaxis] * rgb).astype(np.uint8)
         else:
             cmap = cm_colormaps.get(view.color_map)
             if cmap is not None:
+                # For matplotlib colormaps and our own, ensure the input is normalized.
                 cmap_output = (cmap(new_data) * 255).astype(np.uint8)
-                r_g_b += cmap_output[:, :, :3]  # Drop the alpha channel (4th dimension)
+                r_g_b += cmap_output[:, :, :3]  # Drop the alpha channel if present
             else:
                 raise NotImplementedError(f"Color Map not implemented: {view.color_map}")
 
     print(r_g_b.shape)
+    print(r_g_b.flatten().max())
 
     assert r_g_b.dtype == np.uint8
     assert r_g_b.min() >= 0 and r_g_b.max() <= 255
