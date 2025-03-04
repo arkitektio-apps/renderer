@@ -1,194 +1,8 @@
 app_images:
-- appImageId: 53e4a4154ef9400396cb56be1dcd8d6f
+- appImageId: 4c63669fecc94b00803318c02987fb5c
   flavourName: vanilla
   image:
-    buildAt: '2024-10-25T17:18:52.676824'
-    imageString: jhnnsrs/renderer:0.0.3-vanilla
-  inspection:
-    requirements:
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: lok
-      optional: false
-      service: live.arkitekt.lok
-    - description: An instance of ArkitektNext fluss to retrieve graphs from
-      key: fluss
-      optional: false
-      service: live.arkitekt.fluss
-    - description: An instance of ArkitektNext Kabinet to retrieve nodes from
-      key: kabinet
-      optional: false
-      service: live.arkitekt.kabinet
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: livekit
-      optional: false
-      service: io.livekit.livekit
-    - description: An instance of ArkitektNext Mikro to make requests to the user's
-        data
-      key: mikro
-      optional: true
-      service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Datalayer to make requests to the user's
-        data
-      key: datalayer
-      optional: true
-      service: live.arkitekt.s3
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
-      key: rekuest
-      optional: false
-      service: live.arkitekt.rekuest
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: unlok
-      optional: false
-      service: live.arkitekt.lok
-    size: 641083153
-    templates:
-    - definition:
-        args:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
-              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \  }\n}"
-            ward: mikro
-          description: The image
-          identifier: '@mikro/image'
-          key: image
-          kind: STRUCTURE
-          label: image
-          nullable: false
-          scope: GLOBAL
-        collections: []
-        description: This function renders the image
-        interfaces: []
-        isDev: false
-        isTestFor: []
-        kind: FUNCTION
-        name: Render
-        portGroups: []
-        returns:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
-              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \  }\n}"
-            ward: mikro
-          description: The thumbnail
-          identifier: '@mikro/snapshot'
-          key: return0
-          kind: STRUCTURE
-          nullable: false
-          scope: GLOBAL
-        stateful: false
-      dependencies: []
-      dynamic: false
-      interface: render
-  manifest:
-    author: jhnnsrs
-    entrypoint: app
-    identifier: renderer
-    scopes:
-    - read
-    version: 0.0.3
-  selectors: []
-- appImageId: 8605565a9df44274a14d0d98d2d22ca0
-  flavourName: vanilla
-  image:
-    buildAt: '2024-11-12T18:33:12.028848'
-    imageString: jhnnsrs/renderer:0.0.4-vanilla
-  inspection:
-    requirements:
-    - description: An instance of ArkitektNext Datalayer to make requests to the user's
-        data
-      key: datalayer
-      optional: true
-      service: live.arkitekt.s3
-    - description: An instance of ArkitektNext fluss to retrieve graphs from
-      key: fluss
-      optional: false
-      service: live.arkitekt.fluss
-    - description: An instance of ArkitektNext kraph to relate entities
-      key: kraph
-      optional: false
-      service: live.arkitekt.kraph
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: livekit
-      optional: false
-      service: io.livekit.livekit
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: lok
-      optional: false
-      service: live.arkitekt.lok
-    - description: An instance of ArkitektNext Mikro to make requests to the user's
-        data
-      key: mikro
-      optional: true
-      service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
-      key: rekuest
-      optional: false
-      service: live.arkitekt.rekuest
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: unlok
-      optional: false
-      service: live.arkitekt.lok
-    size: 641750205
-    templates:
-    - definition:
-        args:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
-              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \    __typename\n  }\n}"
-            ward: mikro
-          description: The image
-          identifier: '@mikro/image'
-          key: image
-          kind: STRUCTURE
-          label: image
-          nullable: false
-          scope: GLOBAL
-        collections: []
-        description: This function renders the image
-        interfaces: []
-        isDev: false
-        isTestFor: []
-        kind: FUNCTION
-        name: Render
-        portGroups: []
-        returns:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
-              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \    __typename\n  }\n}"
-            ward: mikro
-          description: The thumbnail
-          identifier: '@mikro/snapshot'
-          key: return0
-          kind: STRUCTURE
-          nullable: false
-          scope: GLOBAL
-        stateful: false
-      dependencies: []
-      dynamic: false
-      interface: render
-  manifest:
-    author: jhnnsrs
-    entrypoint: app
-    identifier: renderer
-    scopes:
-    - read
-    version: 0.0.4
-  selectors: []
-- appImageId: 2bfb688b3ed54c3a805d1d2315cb678e
-  flavourName: vanilla
-  image:
-    buildAt: '2025-02-06T11:54:00.936250'
+    buildAt: '2025-03-04T15:50:05.720032'
     imageString: jhnnsrs/renderer:0.1.0-vanilla
   inspection:
     requirements:
@@ -210,7 +24,7 @@ app_images:
       key: rekuest
       optional: false
       service: live.arkitekt.rekuest
-    size: 602066976
+    size: 603024551
     templates:
     - definition:
         args:
@@ -222,12 +36,14 @@ app_images:
               \    __typename\n  }\n}"
             ward: mikro
           description: The image
+          effects: []
           identifier: '@mikro/image'
           key: image
           kind: STRUCTURE
           label: image
           nullable: false
           scope: GLOBAL
+          validators: []
         collections: []
         description: This function renders the image
         interfaces: []
@@ -245,6 +61,7 @@ app_images:
               \    __typename\n  }\n}"
             ward: mikro
           description: The thumbnail
+          effects: []
           identifier: '@mikro/snapshot'
           key: return0
           kind: STRUCTURE
@@ -262,4 +79,4 @@ app_images:
     - read
     version: 0.1.0
   selectors: []
-latest_app_image: 2bfb688b3ed54c3a805d1d2315cb678e
+latest_app_image: 4c63669fecc94b00803318c02987fb5c

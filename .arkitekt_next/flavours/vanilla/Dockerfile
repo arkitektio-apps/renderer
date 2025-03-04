@@ -1,6 +1,6 @@
 FROM python:3.11-slim-buster
 
-RUN pip install "arkitekt-next[all]>=0.8.64"
+RUN pip install "arkitekt-next[all]>=0.8.73"
 RUN pip install matplotlib
 
 RUN mkdir /app
