@@ -1,8 +1,8 @@
 app_images:
-- appImageId: 4c63669fecc94b00803318c02987fb5c
+- appImageId: 84b02beb916b42d3a3c43b8ef3b9b846
   flavourName: vanilla
   image:
-    buildAt: '2025-03-04T15:50:05.720032'
+    buildAt: '2025-04-19T19:00:02.222043'
     imageString: jhnnsrs/renderer:0.1.0-vanilla
   inspection:
     requirements:
@@ -24,7 +24,7 @@ app_images:
       key: rekuest
       optional: false
       service: live.arkitekt.rekuest
-    size: 603024551
+    size: 606368115
     templates:
     - definition:
         args:
@@ -79,4 +79,4 @@ app_images:
     - read
     version: 0.1.0
   selectors: []
-latest_app_image: 4c63669fecc94b00803318c02987fb5c
+latest_app_image: 84b02beb916b42d3a3c43b8ef3b9b846
