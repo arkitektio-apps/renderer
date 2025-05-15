@@ -1,30 +1,10 @@
 builds:
-- build_id: 4ced81b1-56ae-4f7f-a323-56b7e5cc95b8
-  build_run: 3b84f9e2-dc20-4030-87b5-69dd101cb7bb
+- build_id: ce965a15-d0da-4c51-af32-f4f321af0469
+  build_run: f662cf79-797b-4399-ae20-2ec39b133585
   description: This is a vanilla flavour
   flavour: vanilla
   inspection:
-    requirements:
-    - description: An instance of ArkitektNext Datalayer to make requests to the user's
-        data
-      key: datalayer
-      optional: true
-      service: live.arkitekt.s3
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: lok
-      optional: false
-      service: live.arkitekt.lok
-    - description: An instance of ArkitektNext Mikro to make requests to the user's
-        data
-      key: mikro
-      optional: true
-      service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
-      key: rekuest
-      optional: false
-      service: live.arkitekt.rekuest
-    size: 603024551
-    templates:
+    implementations:
     - definition:
         args:
         - assignWidget:
@@ -34,14 +14,12 @@ builds:
               \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
               \    __typename\n  }\n}"
             ward: mikro
-          description: The image
           effects: []
           identifier: '@mikro/image'
           key: image
           kind: STRUCTURE
           label: image
           nullable: false
-          scope: GLOBAL
           validators: []
         collections: []
         description: This function renders the image
@@ -59,30 +37,17 @@ builds:
               \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
               \    __typename\n  }\n}"
             ward: mikro
-          description: The thumbnail
           effects: []
           identifier: '@mikro/snapshot'
           key: return0
           kind: STRUCTURE
+          label: return0
           nullable: false
-          scope: GLOBAL
+          validators: []
         stateful: false
       dependencies: []
       dynamic: false
       interface: render
-  manifest:
-    author: jhnnsrs
-    entrypoint: app
-    identifier: renderer
-    scopes:
-    - read
-    version: 0.1.0
-  selectors: []
-- build_id: 21b1bdc7-dce5-4288-b590-92869e00147f
-  build_run: cd11d4bf-e424-4286-888e-e19328773a25
-  description: This is a vanilla flavour
-  flavour: vanilla
-  inspection:
     requirements:
     - description: An instance of ArkitektNext Datalayer to make requests to the user's
         data
@@ -98,57 +63,11 @@ builds:
       key: mikro
       optional: true
       service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
+    - description: An instance of ArkitektNext Rekuest to assign to actions
       key: rekuest
       optional: false
       service: live.arkitekt.rekuest
-    size: 606368115
-    templates:
-    - definition:
-        args:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchImages($search: String, $values: [ID!]) {\n  options:\
-              \ images(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \    __typename\n  }\n}"
-            ward: mikro
-          description: The image
-          effects: []
-          identifier: '@mikro/image'
-          key: image
-          kind: STRUCTURE
-          label: image
-          nullable: false
-          scope: GLOBAL
-          validators: []
-        collections: []
-        description: This function renders the image
-        interfaces: []
-        isDev: false
-        isTestFor: []
-        kind: FUNCTION
-        name: Render
-        portGroups: []
-        returns:
-        - assignWidget:
-            kind: SEARCH
-            query: "query SearchSnapshots($search: String, $values: [ID!]) {\n  options:\
-              \ snapshots(\n    filters: {name: {contains: $search}, ids: $values}\n\
-              \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
-              \    __typename\n  }\n}"
-            ward: mikro
-          description: The thumbnail
-          effects: []
-          identifier: '@mikro/snapshot'
-          key: return0
-          kind: STRUCTURE
-          nullable: false
-          scope: GLOBAL
-        stateful: false
-      dependencies: []
-      dynamic: false
-      interface: render
+    size: 591301653
   manifest:
     author: jhnnsrs
     entrypoint: app
@@ -157,4 +76,4 @@ builds:
     - read
     version: 0.1.0
   selectors: []
-latest_build_run: cd11d4bf-e424-4286-888e-e19328773a25
+latest_build_run: f662cf79-797b-4399-ae20-2ec39b133585

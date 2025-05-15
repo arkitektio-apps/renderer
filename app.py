@@ -1,7 +1,7 @@
 from typing import AsyncGenerator, Optional
 from arkitekt_next import startup, register
 import time
-from mikro_next.api import (
+from mikro_next.api.schema import (
     File,
     Stage,
     Snapshot,

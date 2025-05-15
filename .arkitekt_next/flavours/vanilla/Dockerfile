@@ -1,7 +1,7 @@
-FROM python:3.11-slim-buster
+FROM python:3.12-slim
 
-RUN pip install "arkitekt-next[all]>=0.9.4"
 RUN pip install matplotlib
+RUN pip install "arkitekt-next[all]>=0.12.2"
 
 RUN mkdir /app
 WORKDIR /app

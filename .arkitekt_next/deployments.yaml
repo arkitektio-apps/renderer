@@ -1,31 +1,11 @@
 app_images:
-- appImageId: 84b02beb916b42d3a3c43b8ef3b9b846
+- appImageId: 994c993b8c9c47d09287107cc4f385a4
   flavourName: vanilla
   image:
-    buildAt: '2025-04-19T19:00:02.222043'
+    buildAt: '2025-05-15T18:57:29.995122'
     imageString: jhnnsrs/renderer:0.1.0-vanilla
   inspection:
-    requirements:
-    - description: An instance of ArkitektNext Datalayer to make requests to the user's
-        data
-      key: datalayer
-      optional: true
-      service: live.arkitekt.s3
-    - description: An instance of ArkitektNext Lok to authenticate the user
-      key: lok
-      optional: false
-      service: live.arkitekt.lok
-    - description: An instance of ArkitektNext Mikro to make requests to the user's
-        data
-      key: mikro
-      optional: true
-      service: live.arkitekt.mikro
-    - description: An instance of ArkitektNext Rekuest to assign to nodes
-      key: rekuest
-      optional: false
-      service: live.arkitekt.rekuest
-    size: 606368115
-    templates:
+    implementations:
     - definition:
         args:
         - assignWidget:
@@ -35,14 +15,12 @@ app_images:
               \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
               \    __typename\n  }\n}"
             ward: mikro
-          description: The image
           effects: []
           identifier: '@mikro/image'
           key: image
           kind: STRUCTURE
           label: image
           nullable: false
-          scope: GLOBAL
           validators: []
         collections: []
         description: This function renders the image
@@ -60,17 +38,37 @@ app_images:
               \    pagination: {limit: 10}\n  ) {\n    value: id\n    label: name\n\
               \    __typename\n  }\n}"
             ward: mikro
-          description: The thumbnail
           effects: []
           identifier: '@mikro/snapshot'
           key: return0
           kind: STRUCTURE
+          label: return0
           nullable: false
-          scope: GLOBAL
+          validators: []
         stateful: false
       dependencies: []
       dynamic: false
       interface: render
+    requirements:
+    - description: An instance of ArkitektNext Datalayer to make requests to the user's
+        data
+      key: datalayer
+      optional: true
+      service: live.arkitekt.s3
+    - description: An instance of ArkitektNext Lok to authenticate the user
+      key: lok
+      optional: false
+      service: live.arkitekt.lok
+    - description: An instance of ArkitektNext Mikro to make requests to the user's
+        data
+      key: mikro
+      optional: true
+      service: live.arkitekt.mikro
+    - description: An instance of ArkitektNext Rekuest to assign to actions
+      key: rekuest
+      optional: false
+      service: live.arkitekt.rekuest
+    size: 591301653
   manifest:
     author: jhnnsrs
     entrypoint: app
@@ -79,4 +77,4 @@ app_images:
     - read
     version: 0.1.0
   selectors: []
-latest_app_image: 84b02beb916b42d3a3c43b8ef3b9b846
+latest_app_image: 994c993b8c9c47d09287107cc4f385a4
