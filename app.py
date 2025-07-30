@@ -93,8 +93,8 @@ def render(image: Image) -> Snapshot:
                 view_data, view.contrast_limit_min, view.contrast_limit_max
             )
 
-        if view.rescale is True:
-            vmin, vmax = view_data.min(), view_data.max()
+        if view.contrast_limit_max is not None and view.contrast_limit_min is not None:
+            vmin, vmax = view.contrast_limit_min, view.contrast_limit_max
             new_data = np.interp(view_data, (vmin, vmax), (0, 255)).astype(np.uint8)
         else:
             # Check if view_data is an integer or float type and scale accordingly
